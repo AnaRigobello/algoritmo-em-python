@@ -1,0 +1,207 @@
+cont = 0
+opcao = 0
+qtd_c = 0
+qtd_b = 0
+qtd_n = 0
+total_imp = 0
+media_estoq = 0
+
+while(opcao != 2):
+  print("Informe uma Opção Desejada [1 - Cadastrar | 2 - Sair do Programa]")
+  opcao = int(input("Informe a Opção: "))
+
+  if(opcao == 1):
+    preco_uni = float(input("Informe o Preço Unitário R$: "))
+    refri = input("Informe: Esse produto necessita de Refrigeração? = ")
+    categ = input("Informe a Categoria do Produto [A - Alimentação | L - Limpeza | V - Vestuário]: ")
+
+    if(preco_uni <= 20):
+      if(categ == 'A'):
+        custo_estoq = 2
+
+      elif(categ == 'L'):
+        custo_estoq = 3
+
+      else:
+        custo_estoq = 4
+
+    elif(preco_uni > 20 and preco_uni <= 50):
+      if(refri == 'S'):
+        custo_estoq = 6
+
+      else:
+        custo_estoq = 0
+
+    else:
+      if(refri == 'S'):
+        if(categ == 'A'):
+          custo_estoq = 5
+
+        elif(categ == 'L'):
+          custo_estoq = 2
+
+        else:
+          custo_estoq = 4
+
+      else:
+        if(categ == 'A' or categ == 'V'):
+          custo_estoq = 0
+
+        else:
+          custo_estoq = 1
+
+    print("Custo Estocagem: ", custo_estoq)
+
+    if(categ != 'A' and refri != 'S'):
+      imp = preco_uni * 2/100
+    else:
+      imp = preco_uni * 4/100
+
+    print("Imposto R$: ", imp)
+    preco_final = preco_uni + custo_estoq + imp
+    print("Preço Final R$: ", preco_final)
+
+    if(preco_final <= 20):
+      qtd_b = qtd_b + 1
+      print("Classificação Barato!")
+    elif(preco_final > 20 and preco_final <= 100):
+      qtd_n = qtd_n + 1
+      print("Classificação Normal!")
+    else:
+      qtd_c = qtd_c + 1
+      print("Classificação Caro!")
+
+    adicional = adicional + custo_estoq + imp
+    total_imp = total_imp + imp
+    custo_estoq = custo_estoq / cont
+    media_estoq = media_estoq + custo_estoq
+    cont = cont + 1
+
+  else:
+      print("Finalizando o Sistema... Até Mais!")
+      break
+
+print("Média de Estocagem: ", media_estoq / cont)
+while i <= 5:
+    num_op = int(input("Informe o Nº do Operário: "))
+    sexo_op = input("Informe o Sexo do Operário [M ou F]: ")
+    pecas_op = int(input("Informe o Nº de Peças fabricadas: "))
+
+    # Cálculo do Salário do Operário
+    if pecas_op <= 30:
+        salario_op = 1412
+    elif pecas_op > 30 and pecas_op <= 41:
+        salario_op = 1412 + (pecas_op - 30) * (0.03 * 1412)
+    else:
+        salario_op = 1412 + (pecas_op - 41) * (0.05 * 1412)
+    
+    print(f"O Operário de nº {num_op} recebe o salário de R$ {salario_op}")
+
+    # Atualização das variáveis acumuladoras
+    total_folha += salario_op
+    total_pecas += pecas_op
+
+    if sexo_op == 'M':
+        media_masc += pecas_op
+        cont_masc += 1
+    else:
+        media_fem += pecas_op
+        cont_fem += 1
+
+    if i == 1:
+        salario_maior = salario_op
+        num_maior = num_op
+    else:
+        if salario_op > salario_maior:
+            salario_maior = salario_op
+            num_maior = num_op
+
+    i += 1
+
+print("Total da Folha de Pagamento: R$ ", total_folha)
+print("Total de peças fabricadas: ", total_pecas)
+
+if cont_masc == 0:
+    print("Nenhum Homem Cadastrado")
+else:
+    media_masc = media_masc / cont_masc
+    print("Média de peças fabricadas por Homens: ", media_masc)
+
+if cont_fem == 0:
+    print("Nenhuma Mulher Cadastrada")
+else:
+    media_fem = media_fem / cont_fem
+    print("Média de peças fabricadas por Mulheres: ", media_fem)
+
+print("O número do operário com Maior Salário é: ", num_maior)
+while opcao != 2:
+    print("Informe uma Opção Desejada [1 - Cadastrar | 2 - Sair do Programa]")
+    opcao = int(input("Informe a Opção: "))
+
+    if opcao == 1:
+        preco_uni = float(input("Informe o Preço Unitário R$: "))
+        refri = input("Informe: Esse produto necessita de Refrigeração? (S/N): ").upper()
+        categ = input("Informe a Categoria do Produto [A - Alimentação | L - Limpeza | V - Vestuário]: ").upper()
+
+        if preco_uni <= 20:
+            if categ == 'A':
+                custo_estoq = 2
+            elif categ == 'L':
+                custo_estoq = 3
+            else:
+                custo_estoq = 4
+        elif preco_uni > 20 and preco_uni <= 50:
+            if refri == 'S':
+                custo_estoq = 6
+            else:
+                custo_estoq = 0
+        else:
+            if refri == 'S':
+                if categ == 'A':
+                    custo_estoq = 5
+                elif categ == 'L':
+                    custo_estoq = 2
+                else:
+                    custo_estoq = 4
+            else:
+                if categ == 'A' or categ == 'V':
+                    custo_estoq = 0
+                else:
+                    custo_estoq = 1
+
+        print("Custo Estocagem: ", custo_estoq)
+
+        if categ != 'A' and refri != 'S':
+            imp = preco_uni * 2 / 100
+        else:
+            imp = preco_uni * 4 / 100
+
+        print("Imposto R$: ", imp)
+        preco_final = preco_uni + custo_estoq + imp
+        print("Preço Final R$: ", preco_final)
+
+        if preco_final <= 20:
+            qtd_b += 1
+            print("Classificação Barato!")
+        elif preco_final > 20 and preco_final <= 100:
+            qtd_n += 1
+            print("Classificação Normal!")
+        else:
+            qtd_c += 1
+            print("Classificação Caro!")
+
+        adicional += custo_estoq + imp
+        total_imp += imp
+        media_estoq += custo_estoq
+        cont += 1
+
+print("Finalizando o Sistema... Até Mais!")
+
+if cont > 0:
+    media_estoq /= cont
+
+print("Média de Estocagem: ", media_estoq)
+print("Quantidade de produtos baratos: ", qtd_b)
+print("Quantidade de produtos normais: ", qtd_n)
+print("Quantidade de produtos caros: ", qtd_c)
+print("Total de Impostos: R$ ", total_imp)
